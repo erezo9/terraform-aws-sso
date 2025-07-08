@@ -87,10 +87,6 @@ data "aws_identitystore_user" "user" {
     }
   }
 }
-output "user" {
-  value = data.aws_identitystore_user.user
-  
-}
 
 resource "aws_ssoadmin_account_assignment" "user_assignment" {
   for_each           = { for account_id, v in local.flattened_accounts_users : "${v.account_id}-${v.user_name}-${v.user_value}" => v }
